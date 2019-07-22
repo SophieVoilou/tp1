@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import com.sdzee.tp.beans.Client;
 
 public class CreationClient extends HttpServlet {
+	
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String nomCl = request.getParameter( "nomClient" );
 		String prenomCl = request.getParameter( "prenomClient" );
 		String adresseCl = request.getParameter( "adresseClient" );
@@ -19,11 +21,11 @@ public class CreationClient extends HttpServlet {
 		String emailCl = request.getParameter( "emailClient" );
 		
 		String message ;
-		if ( nomCl.trim().isEmpty() || adresseCl.trim().isEmpty() || telephoneCl.trim().isEmpty() ) {
+		if ( nomCl==null || adresseCl==null || telephoneCl==null ) {
             message = "Erreur - Vous n'avez pas rempli tous les champs obligatoires. <br> <a href=\"creerClient.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un client.";
         } else {
             message = "Client créé avec succès !";
-        }
+        
         
 		Client premierBean = new Client();
 		
@@ -36,6 +38,8 @@ public class CreationClient extends HttpServlet {
 		request.setAttribute( "client", premierBean );
 		request.setAttribute("message", message);
 		
-		this.getServletContext().getRequestDispatcher( "/afficherClient.jsp" ).forward( request, response );
+		this.getServletContext().getRequestDispatcher( "/WEB-INF/afficherClient.jsp" ).forward( request, response );
+        }
+		this.getServletContext().getRequestDispatcher( "/WEB-INF/creerClient.jsp" ).forward( request, response );
 	}
 }

@@ -10,7 +10,7 @@
     
           <p class="info">${ message }</p>
           
-            Récupération du Client :    </p>
+            <p> Récupération du Client :    </p>
            <p>  Prenom :${commande.client.prenomCl}</p>
             <p>Nom: ${commande.client.nomCl}</p>
             <p> Adresse :${commande.client.adresseCl}</p>

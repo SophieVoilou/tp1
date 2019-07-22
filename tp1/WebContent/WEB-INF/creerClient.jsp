@@ -8,7 +8,7 @@
     </head>
     <body>
         <div>
-            <form method="get" action="creationClient">
+            <form method="get" action="CreationClient">
                 <fieldset>
                     <legend>Informations client</legend>
     
@@ -17,19 +17,19 @@
                     <br />
                     
                     <label for="prenomClient">Prénom </label>
-                    <input type="text" id="prenomClient" name="prenomClient" value="" size="20" maxlength="20" />
+                    <input type="text" id="prenomClient" name="prenomClient"  size="20" maxlength="20" />
                     <br />
     
                     <label for="adresseClient">Adresse de livraison <span class="requis">*</span></label>
-                    <input type="text" id="adresseClient" name="adresseClient" value="" size="20" maxlength="20" />
+                    <input type="text" id="adresseClient" name="adresseClient"  size="20" maxlength="20" />
                     <br />
     
                     <label for="telephoneClient">Numéro de téléphone <span class="requis">*</span></label>
-                    <input type="text" id="telephoneClient" name="telephoneClient" value="" size="20" maxlength="20" />
+                    <input type="text" id="telephoneClient" name="telephoneClient"  size="20" maxlength="20" />
                     <br />
                     
                     <label for="emailClient">Adresse email</label>
-                    <input type="email" id="emailClient" name="emailClient" value="" size="20" maxlength="60" />
+                    <input type="email" id="emailClient" name="emailClient"  size="20" maxlength="60" />
                     <br />
                 </fieldset>
                 <input type="submit" value="Valider"  />

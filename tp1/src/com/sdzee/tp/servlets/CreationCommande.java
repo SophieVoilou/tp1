@@ -18,6 +18,7 @@ import com.sdzee.tp.beans.Commande;
 
 public class CreationCommande extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String nomCl = request.getParameter( "nomClient" );
 		String prenomCl = request.getParameter( "prenomClient" );
 		String adresseCl = request.getParameter( "adresseClient" );
@@ -29,27 +30,27 @@ public class CreationCommande extends HttpServlet {
         
 		String dateCo = dt.toString( formatter );
 		
-		double montantCo;
+		String montantCo = null;
         try {
             
-            montantCo = Double.parseDouble( request.getParameter( "montantCommande" ) );
+        	montantCo =  request.getParameter( "montantCommande" ) ;
         } catch ( NumberFormatException e ) {
            
-            montantCo = -1;
+        	
         }
 		String modePaiementCo = request.getParameter( "modePaiementCommande" );
 		String statutPaiementCo = request.getParameter( "statutPaiementCommande" );
-		String modeLivraisonCo = request.getParameter( "modePaiementLivraison" );
-		String statutLivraisonCo = request.getParameter( "statutPaiementLivraison" );
+		String modeLivraisonCo = request.getParameter( "modeLivraisonCommande" );
+		String statutLivraisonCo = request.getParameter( "statutLivraisoncommande" );
 		
 	
 		String message;
-		 if ( nomCl.trim().isEmpty() || adresseCl.trim().isEmpty() || telephoneCl.trim().isEmpty() || montantCo == -1
-	                || modePaiementCo.isEmpty() || modeLivraisonCo.isEmpty() ) {
+		 if ( nomCl==null || adresseCl==null || telephoneCl==null || montantCo==null
+	                || modePaiementCo==null || modeLivraisonCo==null ) {
 	            message = "Erreur - Vous n'avez pas rempli tous les champs obligatoires. <br> <a href=\"creerCommande.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'une commande.";
 	        } else {
 	            message = "Commande créée avec succès !";
-	        }
+	        
 		Client premierBean = new Client();
 		
 		premierBean.setNomCl(nomCl);
@@ -61,14 +62,18 @@ public class CreationCommande extends HttpServlet {
 		Commande deuxiemeBean = new Commande ();
 		deuxiemeBean.setClient(premierBean);
 		deuxiemeBean.setDateCo(dateCo);
-		deuxiemeBean.setMontantCo(montantCo);
+		
+		deuxiemeBean.setMontantCo(Double.parseDouble(montantCo));
 		deuxiemeBean.setModePaiementCo(modePaiementCo);
 		deuxiemeBean.setStatutPaimentCo(statutPaiementCo);
 		deuxiemeBean.setModeLivraisonCo(modeLivraisonCo);
 		deuxiemeBean.setStatutLivraisonCo(statutLivraisonCo);
 		
-		request.setAttribute( "Commande", deuxiemeBean );
+		request.setAttribute( "commande", deuxiemeBean );
 		request.setAttribute( "message", message );
-		this.getServletContext().getRequestDispatcher( "/afficherCommande.jsp" ).forward( request, response );
+		System.out.println(nomCl+prenomCl+adresseCl+telephoneCl+emailCl+premierBean+dateCo+montantCo+modePaiementCo+statutPaiementCo+modeLivraisonCo+statutLivraisonCo);
+		this.getServletContext().getRequestDispatcher( "/WEB-INF/afficherCommande.jsp" ).forward( request, response );
+	}
+		 this.getServletContext().getRequestDispatcher( "/WEB-INF/creerCommande.jsp" ).forward( request, response );
 	}
 }
